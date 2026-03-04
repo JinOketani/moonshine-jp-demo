@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moonshine WebSocket Transcriber</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Moonshine 音声文字起こし</h1>
+
+      <section class="panel controls">
+        <div class="row">
+          <label for="wsUrl">WebSocket URL</label>
+          <input id="wsUrl" value="ws://localhost:8765" />
+        </div>
+
+        <div class="row">
+          <label for="language">言語</label>
+          <input id="language" value="ja" />
+        </div>
+
+        <div class="row buttons">
+          <button id="connectBtn">接続</button>
+          <button id="startBtn" disabled>録音開始</button>
+          <button id="stopBtn" disabled>録音停止</button>
+          <button id="saveBtn" disabled>テキスト保存</button>
+          <button id="resetBtn" disabled>クリア</button>
+        </div>
+
+        <p id="status">未接続</p>
+      </section>
+
+      <section class="panel transcript">
+        <h2>途中結果</h2>
+        <p id="interim" class="interim"></p>
+
+        <h2>確定テキスト</h2>
+        <textarea id="finalText" rows="12" readonly></textarea>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

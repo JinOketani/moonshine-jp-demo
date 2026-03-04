@@ -1,0 +1,26 @@
+services:
+  moonshine-server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: moonshine-ws-server
+    ports:
+      - "8765:8765"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8765
+      - DEFAULT_LANGUAGE=ja
+      - NON_LATIN_MAX_TOKENS_PER_SECOND=13.0
+      - TRANSCRIPTION_INTERVAL=0.2
+    volumes:
+      - ./server/transcripts:/app/transcripts
+
+  web-ui:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    container_name: moonshine-web-ui
+    ports:
+      - "8080:80"
+    depends_on:
+      - moonshine-server
